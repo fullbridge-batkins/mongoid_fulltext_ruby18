@@ -430,10 +430,7 @@ module Mongoid
         ['warho', 'rand'].each do |query|
           results = ExternalArtist.fulltext_search(query, { :return_scores => true })
           results.length.should > 0
-          results.map{ |result| result[-1] if result[0].to_s.starts_with?(query)}
-                 .compact
-                 .inject(true){ |accum, item| accum &= (item >= 1 and item < 2) }
-                 .should be_true
+          results.map{ |result| result[-1] if result[0].to_s.starts_with?(query) }.compact.inject(true){ |accum, item| accum &= (item >= 1 and item < 2) }.should be_true
         end
       end
       
@@ -441,10 +438,7 @@ module Mongoid
         ['andy', 'warhol', 'mao'].each do |query|
           results = ExternalArtist.fulltext_search(query, { :return_scores => true })
           results.length.should > 0
-          results.map{ |result| result[-1] if result[0].to_s.split(' ').member?(query) }
-                 .compact
-                 .inject(true){ |accum, item| accum &= (item >= 2) }
-                 .should be_true
+          results.map{ |result| result[-1] if result[0].to_s.split(' ').member?(query) }.compact.inject(true){ |accum, item| accum &= (item >= 2) }.should be_true
         end
       end
       

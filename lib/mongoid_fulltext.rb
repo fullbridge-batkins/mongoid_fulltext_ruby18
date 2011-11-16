@@ -1,5 +1,5 @@
 require 'mongoid_indexes'
-require 'unicode_utils'
+require 'extend_string'
 require 'cgi'
 
 module Mongoid::FullTextSearch
@@ -185,9 +185,7 @@ module Mongoid::FullTextSearch
     def all_ngrams(str, config, bound_number_returned = true)
       return {} if str.nil?
 
-      if config[:remove_accents]
-        str = UnicodeUtils.nfkd(CGI.unescape(str)).gsub(/[^\x00-\x7F]/,'')
-      end
+      str = str.removeaccents if config[:remove_accents]
 
       # Remove any characters that aren't in the alphabet
       filtered_str = str.mb_chars.to_s.downcase.split('').find_all{ |ch| config[:alphabet][ch] }.join('')
