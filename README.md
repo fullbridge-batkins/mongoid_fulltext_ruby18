@@ -4,9 +4,9 @@ Mongoid Fulltext Search
 Full-text search using n-gram matching for the Mongoid ODM. Tested on MongoDB 1.6 and above, but
 probably works on earlier versions as well.
 
-This fork removes the dependency on the unicode_utils gem, and thus makes it compatible with Ruby 1.8.
-It may not escape/remove accented characters quite as well as the original but at I needed it to be compatible
-with Ruby 1.8.
+This fork removes the dependency on the `unicode_utils` gem, and thus makes it compatible with Ruby 1.8.
+It may not escape/remove accented characters quite as well as the original but it is a solution for those
+that need compatibility with `Ruby 1.8.x`.
 
 Some examples:
 --------------
